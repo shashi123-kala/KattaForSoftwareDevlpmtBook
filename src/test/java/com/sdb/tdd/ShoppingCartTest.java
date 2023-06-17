@@ -20,6 +20,16 @@ public class ShoppingCartTest {
 		assertEquals(50.0, shoppingCart.getTotalPrice(sdbList,  discount));
 	}
 	
+	@Test
+	public void buyingTwoCopiesOfDifferentBook() {
+		List<SoftwareDevelopmentBook> sdbList = new ArrayList<SoftwareDevelopmentBook>();
+		double discount = 5;
+		SoftwareDevelopmentBook sdbFirstI = new SoftwareDevelopmentBook("Clean Code (Robert Martin, 2008)");
+		SoftwareDevelopmentBook sdbSecondI = new SoftwareDevelopmentBook("The Clean Coder (Robert Martin, 2011)");
+		sdbList.add(sdbFirstI);
+		sdbList.add(sdbSecondI);
+		assertEquals(95.0, shoppingCart.getTotalPrice(sdbList,  discount));
+	}
 	
 	
 }
