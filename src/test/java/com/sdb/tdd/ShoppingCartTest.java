@@ -9,11 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.sdb.cart.ShoppingCart;
 import com.sdb.cart.SoftwareDevelopmentBook;
+import com.sdb.price.PriceCalculatorByBooksSetDiscount;
 import com.sdb.price.SoftwareDevelopmentBookSetDiscount;
+import com.sdb.price.SoftwareDevelopmentBooksSetFactory;
 
 
 public class ShoppingCartTest {
-	ShoppingCart shoppingCart = new ShoppingCart();
+	ShoppingCart shoppingCart;
 	
 	@BeforeEach
 	public void setup() {
@@ -23,27 +25,39 @@ public class ShoppingCartTest {
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(3, 10));
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(4, 20));
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(5, 25));	
+		SoftwareDevelopmentBooksSetFactory booksSetFactory = new SoftwareDevelopmentBooksSetFactory(byDifferentCopiesDiscountList);
+		shoppingCart = new ShoppingCart(new PriceCalculatorByBooksSetDiscount(booksSetFactory));
+
 
 	}
 
 	@Test
 	public void buyingOneBook() {
-		List<SoftwareDevelopmentBook> sdbList = new ArrayList<SoftwareDevelopmentBook>();
-		double discount = 0;
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
-		sdbList.add(sdbFirstI);
-		assertEquals(50.0, shoppingCart.getTotalPrice(sdbList, discount));
+		shoppingCart.Add(sdbFirstI);
+		assertEquals(50.0, shoppingCart.getTotalPrice());
 	}
 
 	@Test
 	public void buyingTwoCopiesOfDifferentBook() {
-		List<SoftwareDevelopmentBook> sdbList = new ArrayList<SoftwareDevelopmentBook>();
-		double discount = 5;
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbSecondI = Catalog.GivenASoftwareDevelopmentIIBook();
-		sdbList.add(sdbFirstI);
-		sdbList.add(sdbSecondI);
-		assertEquals(95.0, shoppingCart.getTotalPrice(sdbList, discount));
+		shoppingCart.Add(sdbFirstI);
+		shoppingCart.Add(sdbSecondI);
+		assertEquals(95.0, shoppingCart.getTotalPrice());
 	}
+	
+	@Test
+	public void buyingThreeCopiesOfDifferentBook() {
+		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
+		SoftwareDevelopmentBook sdbSecondI = Catalog.GivenASoftwareDevelopmentIIBook();
+		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
+		shoppingCart.Add(sdbFirstI);
+		shoppingCart.Add(sdbSecondI);
+		shoppingCart.Add(sdbThirdI);
+		assertEquals(135, shoppingCart.getTotalPrice());
+
+	}
+	
 
 }
