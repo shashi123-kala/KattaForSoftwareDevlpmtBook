@@ -291,7 +291,6 @@ public class ShoppingCartTest {
 		shoppingCart.Add(sdbThirdI);
 		shoppingCart.Add(sdbThirdII);
 		shoppingCart.Add(sdbThirdIII);
-		System.out.println("15 "+shoppingCart.getTotalPrice());
 		assertEquals(365.0, shoppingCart.getTotalPrice());
 
 	}
