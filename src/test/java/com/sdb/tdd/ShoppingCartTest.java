@@ -13,10 +13,9 @@ import com.sdb.price.PriceCalculatorByBooksSetDiscount;
 import com.sdb.price.SoftwareDevelopmentBookSetDiscount;
 import com.sdb.price.SoftwareDevelopmentBooksSetFactory;
 
-
 public class ShoppingCartTest {
 	ShoppingCart shoppingCart;
-	
+
 	@BeforeEach
 	public void setup() {
 		List<SoftwareDevelopmentBookSetDiscount> byDifferentCopiesDiscountList = new ArrayList<>();
@@ -24,10 +23,10 @@ public class ShoppingCartTest {
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(2, 5));
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(3, 10));
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(4, 20));
-		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(5, 25));	
-		SoftwareDevelopmentBooksSetFactory booksSetFactory = new SoftwareDevelopmentBooksSetFactory(byDifferentCopiesDiscountList);
+		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(5, 25));
+		SoftwareDevelopmentBooksSetFactory booksSetFactory = new SoftwareDevelopmentBooksSetFactory(
+				byDifferentCopiesDiscountList);
 		shoppingCart = new ShoppingCart(new PriceCalculatorByBooksSetDiscount(booksSetFactory));
-
 
 	}
 
@@ -46,7 +45,7 @@ public class ShoppingCartTest {
 		shoppingCart.Add(sdbSecondI);
 		assertEquals(95.0, shoppingCart.getTotalPrice());
 	}
-	
+
 	@Test
 	public void buyingThreeCopiesOfDifferentBook() {
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
@@ -58,7 +57,7 @@ public class ShoppingCartTest {
 		assertEquals(135, shoppingCart.getTotalPrice());
 
 	}
-	
+
 	@Test
 	public void buyingFourCopiesOfDifferentBook() {
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
@@ -71,7 +70,7 @@ public class ShoppingCartTest {
 		shoppingCart.Add(sdbFourthIV);
 		assertEquals(160, shoppingCart.getTotalPrice());
 	}
-	
+
 	@Test
 	public void buyingFiveCopiesOfDifferentBook() {
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
@@ -86,20 +85,20 @@ public class ShoppingCartTest {
 		shoppingCart.Add(sdbFifthI);
 		assertEquals(187.50, shoppingCart.getTotalPrice());
 	}
-	
+
 	@Test
 	public void buyingTwoCopiesOfThreeDiffBookAndOneCpyOfTwoDiffBook() {
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstII = Catalog.GivenASoftwareDevelopmentIBook();
-		
+
 		SoftwareDevelopmentBook sdbSecondI = Catalog.GivenASoftwareDevelopmentIIBook();
 		SoftwareDevelopmentBook sdbSecondII = Catalog.GivenASoftwareDevelopmentIIBook();
-		
+
 		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
 		SoftwareDevelopmentBook sdbThirdII = Catalog.GivenASoftwareDevelopmentIIIBook();
-		
+
 		SoftwareDevelopmentBook sdbFourthI = Catalog.GivenASoftwareDevelopmentIVBook();
-		
+
 		SoftwareDevelopmentBook sdbFifthI = Catalog.GivenASoftwareDevelopmentVBook();
 		shoppingCart.Add(sdbFirstI);
 		shoppingCart.Add(sdbFirstII);
@@ -112,19 +111,19 @@ public class ShoppingCartTest {
 		assertEquals(320, shoppingCart.getTotalPrice());
 
 	}
-	
+
 	@Test
 	public void buyingTwoCopiesOfTwoDiffBookAndThreeCopyOfOneBookAndOneCpyofOthrBook() {
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstII = Catalog.GivenASoftwareDevelopmentIBook();
-		
+
 		SoftwareDevelopmentBook sdbSecondI = Catalog.GivenASoftwareDevelopmentIIBook();
 		SoftwareDevelopmentBook sdbSecondII = Catalog.GivenASoftwareDevelopmentIIBook();
-		
+
 		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
 		SoftwareDevelopmentBook sdbThirdII = Catalog.GivenASoftwareDevelopmentIIIBook();
 		SoftwareDevelopmentBook sdbThirdIII = Catalog.GivenASoftwareDevelopmentIIIBook();
-		
+
 		SoftwareDevelopmentBook sdbFourthI = Catalog.GivenASoftwareDevelopmentIVBook();
 		shoppingCart.Add(sdbFirstI);
 		shoppingCart.Add(sdbFirstII);
@@ -137,20 +136,20 @@ public class ShoppingCartTest {
 		assertEquals(345.00, shoppingCart.getTotalPrice());
 
 	}
-	
+
 	@Test
-	public void buyingFiveCpsOfSingleBookWithOneCopyOfSingleBookAndTwoCpyOfSinglBook () {
+	public void buyingFiveCpsOfSingleBookWithOneCopyOfSingleBookAndTwoCpyOfSinglBook() {
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstII = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstIII = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstIV = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstV = Catalog.GivenASoftwareDevelopmentIBook();
-		
+
 		SoftwareDevelopmentBook sdbSecondI = Catalog.GivenASoftwareDevelopmentIIBook();
-		
+
 		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
 		SoftwareDevelopmentBook sdbThirdII = Catalog.GivenASoftwareDevelopmentIIIBook();
-		
+
 		shoppingCart.Add(sdbFirstI);
 		shoppingCart.Add(sdbFirstII);
 		shoppingCart.Add(sdbFirstIII);
@@ -159,25 +158,24 @@ public class ShoppingCartTest {
 		shoppingCart.Add(sdbSecondI);
 		shoppingCart.Add(sdbThirdI);
 		shoppingCart.Add(sdbThirdII);
-		System.out.println("9   " +shoppingCart.getTotalPrice());
+		System.out.println("9   " + shoppingCart.getTotalPrice());
 		assertEquals(380.00, shoppingCart.getTotalPrice());
 
 	}
 
-	
 	@Test
-	public void buyingfourCpsOfOneBookWithThreeCopsOfoneBookAndOneCpyOfOneBook () {
+	public void buyingfourCpsOfOneBookWithThreeCopsOfoneBookAndOneCpyOfOneBook() {
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstII = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstIII = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstIV = Catalog.GivenASoftwareDevelopmentIBook();
-		
+
 		SoftwareDevelopmentBook sdbSecondI = Catalog.GivenASoftwareDevelopmentIIBook();
 		SoftwareDevelopmentBook sdbSecondII = Catalog.GivenASoftwareDevelopmentIIBook();
 		SoftwareDevelopmentBook sdbSecondIII = Catalog.GivenASoftwareDevelopmentIIBook();
-		
-		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();		
-		
+
+		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
+
 		shoppingCart.Add(sdbFirstI);
 		shoppingCart.Add(sdbFirstII);
 		shoppingCart.Add(sdbFirstIII);
@@ -189,21 +187,21 @@ public class ShoppingCartTest {
 		assertEquals(375.00, shoppingCart.getTotalPrice());
 
 	}
-	
+
 	@Test
-	public void buyingThreeCpyOfTwoDifftBookWithTwoCopsOfoneBook () {
-		
+	public void buyingThreeCpyOfTwoDifftBookWithTwoCopsOfoneBook() {
+
 		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstII = Catalog.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbFirstIII = Catalog.GivenASoftwareDevelopmentIBook();
-		
+
 		SoftwareDevelopmentBook sdbSecI = Catalog.GivenASoftwareDevelopmentIIBook();
 		SoftwareDevelopmentBook sdbSecII = Catalog.GivenASoftwareDevelopmentIIBook();
 		SoftwareDevelopmentBook sdbSecIII = Catalog.GivenASoftwareDevelopmentIIBook();
-		
+
 		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
 		SoftwareDevelopmentBook sdbThirdII = Catalog.GivenASoftwareDevelopmentIIIBook();
-		
+
 		shoppingCart.Add(sdbFirstI);
 		shoppingCart.Add(sdbFirstII);
 		shoppingCart.Add(sdbFirstIII);
@@ -214,5 +212,33 @@ public class ShoppingCartTest {
 		shoppingCart.Add(sdbThirdII);
 		assertEquals(365.00, shoppingCart.getTotalPrice());
 	}
+
+	@Test
+	public void buyingOneCpyOfTwoDifftBookWithTwoCpysOfThreeDifftBook () {
+		
+		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();			
+		
+		SoftwareDevelopmentBook sdbSecI = Catalog.GivenASoftwareDevelopmentIIBook();
+		
+		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
+		SoftwareDevelopmentBook sdbThirdII = Catalog.GivenASoftwareDevelopmentIIIBook();
+		
+		SoftwareDevelopmentBook sdbFourthI = Catalog.GivenASoftwareDevelopmentIVBook();
+		SoftwareDevelopmentBook sdbFourthII = Catalog.GivenASoftwareDevelopmentIVBook();
+		
+		SoftwareDevelopmentBook sdbFifthI = Catalog.GivenASoftwareDevelopmentVBook();
+		SoftwareDevelopmentBook sdbFifthII = Catalog.GivenASoftwareDevelopmentVBook();
+		shoppingCart.Add(sdbFirstI);
+		shoppingCart.Add(sdbSecI);
+		shoppingCart.Add(sdbThirdI);
+		shoppingCart.Add(sdbThirdII);
+		shoppingCart.Add(sdbFourthI);
+		shoppingCart.Add(sdbFourthII);
+		shoppingCart.Add(sdbFifthI);
+		shoppingCart.Add(sdbFifthII);
+		assertEquals(322.50, shoppingCart.getTotalPrice());
+
+	}
+	
 
 }
