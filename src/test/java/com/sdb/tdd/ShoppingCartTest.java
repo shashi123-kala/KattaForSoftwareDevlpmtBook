@@ -113,5 +113,30 @@ public class ShoppingCartTest {
 
 	}
 	
+	@Test
+	public void buyingTwoCopiesOfTwoDiffBookAndThreeCopyOfOneBookAndOneCpyofOthrBook() {
+		SoftwareDevelopmentBook sdbFirstI = Catalog.GivenASoftwareDevelopmentIBook();
+		SoftwareDevelopmentBook sdbFirstII = Catalog.GivenASoftwareDevelopmentIBook();
+		
+		SoftwareDevelopmentBook sdbSecondI = Catalog.GivenASoftwareDevelopmentIIBook();
+		SoftwareDevelopmentBook sdbSecondII = Catalog.GivenASoftwareDevelopmentIIBook();
+		
+		SoftwareDevelopmentBook sdbThirdI = Catalog.GivenASoftwareDevelopmentIIIBook();
+		SoftwareDevelopmentBook sdbThirdII = Catalog.GivenASoftwareDevelopmentIIIBook();
+		SoftwareDevelopmentBook sdbThirdIII = Catalog.GivenASoftwareDevelopmentIIIBook();
+		
+		SoftwareDevelopmentBook sdbFourthI = Catalog.GivenASoftwareDevelopmentIVBook();
+		shoppingCart.Add(sdbFirstI);
+		shoppingCart.Add(sdbFirstII);
+		shoppingCart.Add(sdbSecondI);
+		shoppingCart.Add(sdbSecondII);
+		shoppingCart.Add(sdbThirdI);
+		shoppingCart.Add(sdbThirdII);
+		shoppingCart.Add(sdbThirdIII);
+		shoppingCart.Add(sdbFourthI);
+		assertEquals(345.00, shoppingCart.getTotalPrice());
+
+	}
+	
 
 }
